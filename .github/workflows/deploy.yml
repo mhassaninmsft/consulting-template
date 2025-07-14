@@ -9,6 +9,12 @@ jobs:
     steps:
         - uses: actions/checkout@v3
 
+        # use containers and we do not need to do this step
+        - name: Clean workspace
+          run: |
+            # Delete all files and directories except .git
+            find . -mindepth 1 -not -path './.git*' -delete
+
         - name: Create build folder and copy files
           run: |
             mkdir -p build

@@ -9,18 +9,9 @@ jobs:
     steps:
         - uses: actions/checkout@v3
 
-        # use containers and we do not need to do this step
-        - name: Clean workspace
+        - name: Run build script
           run: |
-            # Delete all files and directories except .git
-            find . -mindepth 1 -not -path './.git*' -delete
-
-        - name: Create build folder and copy files
-          run: |
-            mkdir -p build
-            cp -r * build/
-            # Remove .git and .github from build folder if they were copied
-            rm -rf build/.git build/.github
+            ./build.sh
 
         - name: Deploy
           uses: reggionick/s3-deploy@v3

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Solutions Co.</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #f8f9fa;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo img {
+      height: 50px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #4f91f9, #42d392);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .btn-primary {
+      background: white;
+      color: #4f91f9;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: #e6e6e6;
+    }
+
+    .features, .story, .enterprise, .cta {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+    .feature {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    .feature h3 {
+      color: #4f91f9;
+      margin-bottom: 10px;
+    }
+
+    .story h2, .enterprise h2, .cta h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .story p, .enterprise p, .cta p {
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background: #f1f1f1;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="https://via.placeholder.com/150x50?text=AI+Solutions+Co." alt="Company Logo" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#features">Why Us</a></li>
+        <li><a href="#enterprise">Enterprise AI</a></li>
+        <li><a href="#story">Philosophy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero animate__animated animate__fadeIn">
+    <h1>Turn Ideas into Intelligent Experiences</h1>
+    <p>We enable anyone to build powerful AI-powered apps—no coding needed. Just imagine it, and we’ll bring it to life.</p>
+    <a href="#features" class="btn-primary">Explore How</a>
+  </section>
+
+  <section id="features" class="features animate__animated animate__fadeInUp">
+    <div class="feature">
+      <h3>🛠️ No-Code App Creation</h3>
+      <p>Describe your idea. We'll generate a full interactive app—flashcards, chatbots, quizzes—ready to use and share.</p>
+    </div>
+    <div class="feature">
+      <h3>💡 Inspire & Customize</h3>
+      <p>Browse our gallery of templates and inspirations. Fork any idea in minutes to match your vision.</p>
+    </div>
+    <div class="feature">
+      <h3>🔄 Dynamic Interactivity</h3>
+      <p>Build apps that adapt—ask questions, filter data, deliver personalized output.</p>
+    </div>
+    <div class="feature">
+      <h3>📁 Centralized Workspace</h3>
+      <p>Manage your creations in one place. Version control, share links, and iterate seamlessly.</p>
+    </div>
+    <div class="feature">
+      <h3>🏢 Trusted Expertise</h3>
+      <p>20+ years of experience building industry-grade software for Fortune 500 clients and beyond.</p>
+    </div>
+    <div class="feature">
+      <h3>🎓 Elite Talent</h3>
+      <p>Run by graduates of America’s top universities who worked for top-tier tech giants.</p>
+    </div>
+    <div class="feature">
+      <h3>📈 Measurable Gains</h3>
+      <p>Clients experience a 50% reduction in costs and up to 3x performance improvement.</p>
+    </div>
+  </section>
+
+  <section id="enterprise" class="enterprise animate__animated animate__fadeIn">
+    <h2>Enterprise-Grade AI, Built to Scale</h2>
+    <p>Our solutions are built from the ground up to serve mission-critical workloads at scale.</p>
+    <p>We prioritize <strong>resilience</strong>, <strong>scalability</strong>, and leverage the latest in <strong>cloud-native technologies</strong>.</p>
+    <p>All our products follow a <strong>security-first approach</strong> and are designed with <strong>ethical AI practices</strong> at their core.</p>
+  </section>
+
+  <section id="story" class="story animate__animated animate__fadeInUp">
+    <h2>Where Conversation Becomes Creation</h2>
+    <p>We believe the best creation starts with conversation. Like Rick Rubin’s creative flow, we’ve made it simple for chat to become code, and code to become living experiences.</p>
+    <p>Explore, tweak, and reimagine—turning simple ideas into polished, intelligent tools.</p>
+  </section>
+
+  <section class="cta animate__animated animate__pulse" id="contact">
+    <h2>Start Building Today</h2>
+    <p>Whether it's an educational tool, a custom assistant, or a creative app—share your vision and let us bring it to life.</p>
+    <a href="mailto:hello@aisolutionsco.com" class="btn-primary">Get in Touch</a>
+  </section>
+
+  <footer>
+    &copy; 2025 AI Solutions Co. • Empowering innovators through intelligent apps.
+  </footer>
+
+</body>
+</html>

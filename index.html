@@ -1,643 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechForward Solutions - AI & Data Consulting</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Solutions Co.</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #f8f9fa;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo img {
+      height: 50px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            overflow: hidden;
-        }
+    .hero {
+      background: linear-gradient(135deg, #4f91f9, #42d392);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .btn-primary {
+      background: white;
+      color: #4f91f9;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: #e6e6e6;
+    }
 
-        .presentation-container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-        }
+    .features, .story, .enterprise, .cta {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+    .feature {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    .feature h3 {
+      color: #4f91f9;
+      margin-bottom: 10px;
+    }
 
-        .slide {
-            width: 100%;
-            height: 100%;
-            display: none;
-            padding: 40px;
-            position: absolute;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            animation: slideIn 0.5s ease-in-out;
-        }
+    .story h2, .enterprise h2, .cta h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .story p, .enterprise p, .cta p {
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 15px;
+    }
 
-        .slide.active {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    footer {
+      background: #f1f1f1;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .slide-content {
-            max-width: 1200px;
-            width: 100%;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 25px;
-            color: #2c3e50;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #34495e;
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            color: #7f8c8d;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .industry-section {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .industry-item {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 200px;
-            transition: transform 0.3s ease;
-        }
-
-        .industry-item:hover {
-            transform: scale(1.05);
-        }
-
-        .use-case-list {
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .use-case-item {
-            background: rgba(255, 255, 255, 0.9);
-            margin: 15px 0;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #667eea;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .use-case-item:hover {
-            transform: translateX(10px);
-        }
-
-        .navigation {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .slide-counter {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .tech-badge {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .tech-badge:hover {
-            transform: scale(1.1);
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #667eea;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-top: 10px;
-        }
-
-        .cta-section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 20px;
-            margin-top: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .contact-info {
-            font-size: 1.1rem;
-            color: #34495e;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .slide {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .tech-stack {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="presentation-container">
-        <div class="slide-counter">
-            <span id="current-slide">1</span> / <span id="total-slides">10</span>
-        </div>
 
-        <!-- Slide 1: Title -->
-        <div class="slide active">
-            <div class="slide-content">
-                <h1>TechForward Solutions</h1>
-                <p class="subtitle">AI-Powered Digital Transformation Consulting</p>
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <span class="stat-number">20+</span>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100+</span>
-                        <div class="stat-label">Projects Delivered</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">4</span>
-                        <div class="stat-label">Key Industries</div>
-                    </div>
-                </div>
-                <p class="contact-info">Transforming businesses through cutting-edge AI and data solutions</p>
-            </div>
-        </div>
-
-        <!-- Slide 2: Who We Are -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Who We Are</h2>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Expert Team</h3>
-                    <p>Software engineering professionals with 20+ years of combined experience from top US companies</p>
-                </div>
-                <div class="content-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>Proven Results</h3>
-                        <p>We deliver real solutions that drive measurable business impact</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔧</div>
-                        <h3>Custom Solutions</h3>
-                        <p>Tailored approaches that work with your existing systems</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
-                        <h3>Safe & Responsible AI</h3>
-                        <p>Ethical AI practices ensuring security and compliance</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 3: Our Services -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Our Core Services</h2>
-                <div class="content-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🤖</div>
-                        <h3>AI & Generative AI</h3>
-                        <p>Advanced AI solutions including LLMs, machine learning, and automation</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Data Science</h3>
-                        <p>Analytics, predictive modeling, and data-driven insights</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">☁️</div>
-                        <h3>Cloud Solutions</h3>
-                        <p>Azure, AWS, and GCP implementation and optimization</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔐</div>
-                        <h3>Cybersecurity</h3>
-                        <p>Comprehensive security solutions and risk management</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3>Digital Transformation</h3>
-                        <p>End-to-end modernization of business processes</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🏗️</div>
-                        <h3>Data Architecture</h3>
-                        <p>Data estates, warehouses, and enterprise data management</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 4: Technology Stack -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Our Technology Stack</h2>
-                <div class="tech-stack">
-                    <div class="tech-badge">Azure</div>
-                    <div class="tech-badge">AWS</div>
-                    <div class="tech-badge">Google Cloud</div>
-                    <div class="tech-badge">Python</div>
-                    <div class="tech-badge">TensorFlow</div>
-                    <div class="tech-badge">PyTorch</div>
-                    <div class="tech-badge">Kubernetes</div>
-                    <div class="tech-badge">Docker</div>
-                    <div class="tech-badge">Spark</div>
-                    <div class="tech-badge">Snowflake</div>
-                    <div class="tech-badge">Databricks</div>
-                    <div class="tech-badge">Power BI</div>
-                </div>
-                <div class="feature-card" style="margin-top: 40px;">
-                    <h3>Enterprise-Grade Solutions</h3>
-                    <p>We leverage cutting-edge technologies to build scalable, secure, and maintainable solutions that integrate seamlessly with your existing infrastructure.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 5: Key Use Cases -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Featured Solutions</h2>
-                <div class="use-case-list">
-                    <div class="use-case-item">
-                        <h3>🎧 Agentic Customer Support</h3>
-                        <p>Intelligent AI agents that handle customer inquiries with human-like understanding and context awareness</p>
-                    </div>
-                    <div class="use-case-item">
-                        <h3>🔍 Enhanced Enterprise Data Search</h3>
-                        <p>Advanced search capabilities with context understanding across all your enterprise data sources</p>
-                    </div>
-                    <div class="use-case-item">
-                        <h3>🛡️ Fraud Detection Systems</h3>
-                        <p>Real-time fraud detection using machine learning and behavioral analytics</p>
-                    </div>
-                    <div class="use-case-item">
-                        <h3>💭 Sentiment Analysis</h3>
-                        <p>Customer sentiment monitoring and analysis for better business insights</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 6: Industries We Serve -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Industries We Serve</h2>
-                <div class="industry-section">
-                    <div class="industry-item">
-                        <div class="feature-icon">🏦</div>
-                        <h3>Financial Services</h3>
-                        <p>Banking solutions, risk management, and regulatory compliance</p>
-                    </div>
-                    <div class="industry-item">
-                        <div class="feature-icon">💳</div>
-                        <h3>Banking</h3>
-                        <p>Digital banking, payment processing, and customer analytics</p>
-                    </div>
-                    <div class="industry-item">
-                        <div class="feature-icon">🛍️</div>
-                        <h3>Retail</h3>
-                        <p>E-commerce optimization, inventory management, and personalization</p>
-                    </div>
-                    <div class="industry-item">
-                        <div class="feature-icon">🏥</div>
-                        <h3>Healthcare</h3>
-                        <p>Medical data analytics, patient care optimization, and compliance</p>
-                    </div>
-                </div>
-                <div class="feature-card" style="margin-top: 40px;">
-                    <h3>Deep Industry Expertise</h3>
-                    <p>Our team brings decades of experience working with leading companies across these sectors, understanding their unique challenges and regulatory requirements.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 7: Data Solutions -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Data Solutions Excellence</h2>
-                <div class="content-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🏗️</div>
-                        <h3>Data Estates</h3>
-                        <p>Comprehensive data architecture design and implementation</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🏢</div>
-                        <h3>Data Warehouses</h3>
-                        <p>Modern data warehouse solutions for enterprise-scale analytics</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📈</div>
-                        <h3>Big Data Analytics</h3>
-                        <p>Making sense of large, complex datasets for actionable insights</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔄</div>
-                        <h3>Data Integration</h3>
-                        <p>Seamless integration with existing systems and workflows</p>
-                    </div>
-                </div>
-                <div class="cta-section">
-                    <h3>Transform Your Data Into Value</h3>
-                    <p>We help organizations unlock the full potential of their data assets through modern architecture and advanced analytics.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 8: AI Safety & Responsibility -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Safe & Responsible AI</h2>
-                <div class="content-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">✅</div>
-                        <h3>Ethical AI Practices</h3>
-                        <p>Ensuring AI systems are fair, transparent, and accountable</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
-                        <h3>Security First</h3>
-                        <p>Built-in security measures and privacy protection</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📋</div>
-                        <h3>Compliance Ready</h3>
-                        <p>Meeting regulatory requirements and industry standards</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔍</div>
-                        <h3>Explainable AI</h3>
-                        <p>Transparent AI decisions with clear reasoning paths</p>
-                    </div>
-                </div>
-                <div class="cta-section">
-                    <h3>Trust Through Transparency</h3>
-                    <p>Our commitment to responsible AI ensures your solutions are not just powerful, but also trustworthy and compliant with evolving regulations.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 9: Why Choose Us -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Why Choose TechForward Solutions?</h2>
-                <div class="content-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>Proven Track Record</h3>
-                        <p>20+ years delivering successful projects for top-tier companies</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Rapid Implementation</h3>
-                        <p>Fast delivery without compromising on quality or security</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔧</div>
-                        <h3>Custom Solutions</h3>
-                        <p>Tailored approaches for your specific business needs</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🤝</div>
-                        <h3>Partnership Approach</h3>
-                        <p>We work alongside your team as trusted advisors</p>
-                    </div>
-                </div>
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <span class="stat-number">99%</span>
-                        <div class="stat-label">Client Satisfaction</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50%</span>
-                        <div class="stat-label">Average Cost Reduction</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">3x</span>
-                        <div class="stat-label">Performance Improvement</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 10: Contact -->
-        <div class="slide">
-            <div class="slide-content">
-                <h2>Ready to Transform Your Business?</h2>
-                <div class="cta-section">
-                    <h3>Let's Build Something Amazing Together</h3>
-                    <p>Contact us today to discuss how we can help accelerate your digital transformation journey with cutting-edge AI and data solutions.</p>
-                    <div class="contact-info">
-                        <p><strong>📧 Email:</strong> info@techforwardsolutions.com</p>
-                        <p><strong>📞 Phone:</strong> +1 (555) 123-4567</p>
-                        <p><strong>🌐 Website:</strong> www.techforwardsolutions.com</p>
-                        <p><strong>📍 Location:</strong> Serving clients across the United States</p>
-                    </div>
-                </div>
-                <div class="feature-card" style="margin-top: 40px;">
-                    <h3>Free Consultation Available</h3>
-                    <p>Schedule a no-obligation consultation to explore how our solutions can drive your business forward.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navigation -->
-        <div class="navigation">
-            <button class="nav-btn" onclick="previousSlide()">← Previous</button>
-            <button class="nav-btn" onclick="nextSlide()">Next →</button>
-        </div>
+  <header>
+    <div class="logo">
+      <img src="https://via.placeholder.com/150x50?text=AI+Solutions+Co." alt="Company Logo" />
     </div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#features">Why Us</a></li>
+        <li><a href="#enterprise">Enterprise AI</a></li>
+        <li><a href="#story">Philosophy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
+  <section id="hero" class="hero animate__animated animate__fadeIn">
+    <h1>Turn Ideas into Intelligent Experiences</h1>
+    <p>We enable anyone to build powerful AI-powered apps—no coding needed. Just imagine it, and we’ll bring it to life.</p>
+    <a href="#features" class="btn-primary">Explore How</a>
+  </section>
 
-        document.getElementById('total-slides').textContent = totalSlides;
+  <section id="features" class="features animate__animated animate__fadeInUp">
+    <div class="feature">
+      <h3>🛠️ No-Code App Creation</h3>
+      <p>Describe your idea. We'll generate a full interactive app—flashcards, chatbots, quizzes—ready to use and share.</p>
+    </div>
+    <div class="feature">
+      <h3>💡 Inspire & Customize</h3>
+      <p>Browse our gallery of templates and inspirations. Fork any idea in minutes to match your vision.</p>
+    </div>
+    <div class="feature">
+      <h3>🔄 Dynamic Interactivity</h3>
+      <p>Build apps that adapt—ask questions, filter data, deliver personalized output.</p>
+    </div>
+    <div class="feature">
+      <h3>📁 Centralized Workspace</h3>
+      <p>Manage your creations in one place. Version control, share links, and iterate seamlessly.</p>
+    </div>
+    <div class="feature">
+      <h3>🏢 Trusted Expertise</h3>
+      <p>20+ years of experience building industry-grade software for Fortune 500 clients and beyond.</p>
+    </div>
+    <div class="feature">
+      <h3>🎓 Elite Talent</h3>
+      <p>Run by graduates of America’s top universities who worked for top-tier tech giants.</p>
+    </div>
+    <div class="feature">
+      <h3>📈 Measurable Gains</h3>
+      <p>Clients experience a 50% reduction in costs and up to 3x performance improvement.</p>
+    </div>
+  </section>
 
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[n].classList.add('active');
-            document.getElementById('current-slide').textContent = n + 1;
-        }
+  <section id="enterprise" class="enterprise animate__animated animate__fadeIn">
+    <h2>Enterprise-Grade AI, Built to Scale</h2>
+    <p>Our solutions are built from the ground up to serve mission-critical workloads at scale.</p>
+    <p>We prioritize <strong>resilience</strong>, <strong>scalability</strong>, and leverage the latest in <strong>cloud-native technologies</strong>.</p>
+    <p>All our products follow a <strong>security-first approach</strong> and are designed with <strong>ethical AI practices</strong> at their core.</p>
+  </section>
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
+  <section id="story" class="story animate__animated animate__fadeInUp">
+    <h2>Where Conversation Becomes Creation</h2>
+    <p>We believe the best creation starts with conversation. Like Rick Rubin’s creative flow, we’ve made it simple for chat to become code, and code to become living experiences.</p>
+    <p>Explore, tweak, and reimagine—turning simple ideas into polished, intelligent tools.</p>
+  </section>
 
-        function previousSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        }
+  <section class="cta animate__animated animate__pulse" id="contact">
+    <h2>Start Building Today</h2>
+    <p>Whether it's an educational tool, a custom assistant, or a creative app—share your vision and let us bring it to life.</p>
+    <a href="mailto:hassanin@udel.edu" class="btn-primary">Get in Touch With Us</a>
+  </section>
 
-        // Keyboard navigation
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowLeft') {
-                previousSlide();
-            } else if (event.key === 'ArrowRight') {
-                nextSlide();
-            }
-        });
+  <footer>
+    &copy; 2025 AI Solutions Co. • Empowering innovators through intelligent apps.
+  </footer>
 
-        // Auto-advance slides (uncomment if desired)
-        // setInterval(nextSlide, 10000); // Auto-advance every 10 seconds
-    </script>
 </body>
 </html>

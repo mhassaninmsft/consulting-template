@@ -1,0 +1,30 @@
+name: Deploy to S3
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+        - uses: actions/checkout@v3
+
+        - name: Create build folder and copy files
+          run: |
+            mkdir -p build
+            cp -r * build/ 2>/dev/null || true
+            # Remove .git and .github from build folder if they were copied
+            rm -rf build/.git build/.github
+
+        - name: Deploy
+          uses: reggionick/s3-deploy@v3
+          with:
+            folder: build
+            bucket-region: "us-east-2"
+            bucket: "codecraftersconsulting.com"
+            # dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+            # invalidation: /
+            # delete-removed: true
+            # no-cache: true
+            # private: true
+            # files-to-include: ".*/*,*/*,**"

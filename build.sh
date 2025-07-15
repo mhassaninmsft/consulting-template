@@ -11,6 +11,7 @@ mkdir -p build
 # Copy index.html to build directory
 echo "Copying index.html to build directory..."
 cp index.html build/
+cp logo.jpg build/
 
 # Copy any other static assets if they exist
 if [ -d "assets" ]; then
